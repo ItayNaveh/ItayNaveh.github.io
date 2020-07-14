@@ -1,9 +1,15 @@
 let count_EL;
-let count = parseInt(localStorage.getItem("count"));
+let count;
 let button;
 function setup() {
   createCanvas(600,600);
   background(100);
+
+  if (localStorage.getItem("count") == null){
+    count = 0;
+  }else {
+    count = parseInt(localStorage.getItem("count"));
+  }
 
   count_EL = document.getElementById("count");
   count_EL.innerHTML = count;

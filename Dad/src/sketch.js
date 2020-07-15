@@ -1,4 +1,3 @@
-let count_EL;
 let count;
 let button;
 function setup() {
@@ -13,7 +12,7 @@ function setup() {
 
   count_EL = document.getElementById("count");
   count_EL.innerHTML = count;
-  button = new Button(width/2,height/2,50);
+  button = new Button(width/2,height/2,55);
 }
 
 function draw() {

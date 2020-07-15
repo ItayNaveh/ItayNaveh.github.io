@@ -13,6 +13,7 @@ class Button{
         // ellipse(this.x,this.y,this.r*2,this.r*2);
         fill(255);
         textAlign(CENTER);
+        textSize(12);
         text(this.msg,this.x,this.y);
     }
 

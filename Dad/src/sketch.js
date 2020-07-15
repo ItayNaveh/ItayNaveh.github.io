@@ -10,14 +10,14 @@ function setup() {
     count = parseInt(localStorage.getItem("count"));
   }
 
-  count_EL = document.getElementById("count");
-  count_EL.innerHTML = count;
   button = new Button(width/2,height/2,55);
 }
 
 function draw() {
   background(100);
   button.display();
+  textSize(24);
+  text(count,50,50);
 }
 
 function mouseClicked(){
@@ -25,7 +25,6 @@ function mouseClicked(){
   if (dis <= button.r){
     button.clicked(width,height);
     count++;
-    count_EL.innerHTML = count;
     localStorage.setItem("count",count.toString());
     // console.log("Int: " + parseInt(count));
     // console.log("String: " + count.toString());

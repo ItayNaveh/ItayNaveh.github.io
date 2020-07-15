@@ -2,7 +2,7 @@ let count_EL;
 let count;
 let button;
 function setup() {
-  createCanvas(window.screen.width * 0.8 ,window.screen.height * 0.8);
+  createCanvas(window.screen.width * 0.9 ,window.screen.height * 0.7);
   background(100);
 
   if (localStorage.getItem("count") == null){

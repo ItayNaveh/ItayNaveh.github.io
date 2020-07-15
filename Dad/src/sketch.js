@@ -10,7 +10,7 @@ function setup() {
     count = parseInt(localStorage.getItem("count"));
   }
 
-  button = new Button(width/2,height/2,55);
+  button = new Button(width/2,height/2,75);
 }
 
 function draw() {

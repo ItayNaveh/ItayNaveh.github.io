@@ -27,8 +27,8 @@ function mouseClicked(){
   let dis = dist(mouseX,mouseY,button.x,button.y);
   if (dis <= button.r){
     button.clicked(width,height);
-    red = Math.random() * (255 - 0) + 0;
-    green = Math.random() * (255 - 0) + 0;
+    // red = Math.random() * (255 - 0) + 0;
+    // green = Math.random() * (255 - 0) + 0;
     count++;
     localStorage.setItem("count",count.toString());
     // console.log("Int: " + parseInt(count));

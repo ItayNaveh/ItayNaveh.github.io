@@ -23,7 +23,7 @@ class Button{
     clicked(w,h){
         this.x = Math.random() * ((w - this.r) - this.r) + this.r;
         this.y = Math.random() * ((h - this.r) - this.r) + this.r;
-        this.red = Math.random() * (255 - 0) + 0;
-        this.green = Math.random() * (255 - 0) + 0;
+        // this.red = Math.random() * (255 - 0) + 0;
+        // this.green = Math.random() * (255 - 0) + 0;
     }
 }

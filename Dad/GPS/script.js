@@ -2,28 +2,27 @@ if ("geolocation" in navigator) {
 
     const geo = navigator.geolocation
 
-    let save1_lat;
-    let save1_lon;
-    let save2_lat;
-    let save2_lon;
+    let save_lat;
+    let save_lon;
 
-    function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+
+    function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
         let R = 6371; // Radius of the earth in km
-        let dLat = deg2rad(lat2-lat1);  // deg2rad below
-        let dLon = deg2rad(lon2-lon1); 
-        let a = 
-          Math.sin(dLat/2) * Math.sin(dLat/2) +
-          Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-          Math.sin(dLon/2) * Math.sin(dLon/2)
-          ; 
-        let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        let dLat = deg2rad(lat2 - lat1);  // deg2rad below
+        let dLon = deg2rad(lon2 - lon1);
+        let a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2)
+            ;
+        let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         let d = R * c; // Distance in km
         return d;
-      }
-      
-      function deg2rad(deg) {
-        return deg * (Math.PI/180)
-      }
+    }
+
+    function deg2rad(deg) {
+        return deg * (Math.PI / 180)
+    }
 
     function setPos(pos) {
         const latitude = document.getElementById("lat")
@@ -36,38 +35,45 @@ if ("geolocation" in navigator) {
         geo.getCurrentPosition(setPos)
     }
 
-    function save1Clicked() {
+    function saveClicked() {
         geo.getCurrentPosition(
             (pos) => {
-                save1_lat = pos.coords.latitude
-                save1_lon = pos.coords.longitude
-            }
-        )
-    }
-
-    function save2Clicked() {
-        geo.getCurrentPosition(
-            (pos) => {
-                save2_lat = pos.coords.latitude
-                save2_lon = pos.coords.longitude
+                save_lat = pos.coords.latitude
+                save_lon = pos.coords.longitude
             }
         )
     }
 
     function compareClicked() {
+        let acceptable = false;
         const dist = document.getElementById("dist")
-        dist.innerHTML = getDistanceFromLatLonInKm(save1_lat,save1_lon,save2_lat,save2_lon)
-        console.log(getDistanceFromLatLonInKm(save1_lat,save1_lon,save2_lat,save2_lon))
+        geo.getCurrentPosition((pos) => {
+            const distCalc = getDistanceFromLatLonInKm(save_lat, save_lon, pos.coords.latitude, pos.coords.longitude);
+            if (distCalc == 0) {
+                acceptable = true;
+            } else {
+                for (let i = 0.00001; i < config.tolerance; i += 0.00001) {
+                    if (distCalc - i == 0) {
+                        acceptable = true;
+                    }
+                }
+
+                for (let i = 0.00001; i < config.tolerance; i += 0.00001) {
+                    if (distCalc + i == 0) {
+                        acceptable = true;
+                    }
+                }
+            }
+            dist.innerHTML = acceptable;
+            console.log("Distance: " + getDistanceFromLatLonInKm(save_lat, save_lon, pos.coords.latitude, pos.coords.longitude));
+        });
     }
 
     const update = document.getElementById("update")
-    update.addEventListener("click",updateClicked)
+    update.addEventListener("click", updateClicked)
 
-    const save1 = document.getElementById("save1")
-    const save2 = document.getElementById("save2")
-
-    save1.addEventListener("click", save1Clicked)
-    save2.addEventListener("click", save2Clicked)
+    const save = document.getElementById("save")
+    save.addEventListener("click", saveClicked)
 
     const compare = document.getElementById("compare")
     compare.addEventListener("click", compareClicked)

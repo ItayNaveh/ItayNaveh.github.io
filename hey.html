@@ -17,7 +17,12 @@
         //     p.textContent = data;
         // }
         // getData();
-        fetch("text.txt");
+        async function getData() {
+            const response = await fetch("text.txt");
+            const data = await response.text();
+            document.getElementById("txt").innerHTML = data;
+        }
+        getData();
     </script>
 </body>
 </html>

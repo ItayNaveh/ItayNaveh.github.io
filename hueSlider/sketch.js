@@ -22,9 +22,9 @@ function setup() {
 }
 
 function draw() {
-  hueVal.elt.innerHTML = hueSlider.value();
-  satVal.elt.innerHTML = satSlider.value();
-  briVal.elt.innerHTML = briSlider.value();
+  hueVal.elt.innerHTML = "Hue Value - " + hueSlider.value();
+  satVal.elt.innerHTML = "Saturation Value - " + satSlider.value();
+  briVal.elt.innerHTML = "Brightness/Value Value - " + briSlider.value();
 
 
   background(hueSlider.value(), satSlider.value(), briSlider.value());

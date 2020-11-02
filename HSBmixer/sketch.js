@@ -8,7 +8,7 @@ let briVal;
 let briSlider;
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(0.90 * window.innerWidth, 300);
   hueVal = createP("Hue Value");
   hueSlider = createSlider(0, 255, 0, 1);
 

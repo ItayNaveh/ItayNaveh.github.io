@@ -1,3 +1,3 @@
 # ItayNaveh.github.io
 
-My Website to put random and utilities I make
+My Website to put random things and utilities I make

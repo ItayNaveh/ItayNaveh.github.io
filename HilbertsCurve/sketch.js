@@ -46,7 +46,7 @@ function draw() {
   
   count++;
   if (count >= path.length) {
-    noLoop();
+    count = total;
   }
 }
 

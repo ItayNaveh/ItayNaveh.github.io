@@ -1,12 +1,22 @@
-const order = 6;
+let order;
 let N;
 let total;
 
+let speed;
 const path = [];
 
 function setup() {
   createCanvas(512, 512);
 
+  createP("Press Space to restart");
+  createP('Add "?speed={number}&order={number}" to the URL to change the speed and order')
+  createP("The default values are<br>speed-1<br>order-6");
+
+  const params = new URLSearchParams(window.location.search);
+  
+  speed = int(params.get("speed")) || 1;
+
+  order = int(params.get("order")) || 6;
   N = int(pow(2, order));
   total = N * N;
   
@@ -44,7 +54,7 @@ function draw() {
   //  point(path[i].x, path[i].y);
   //}
   
-  count++;
+  count += speed;
   if (count >= path.length) {
     count = total;
   }
